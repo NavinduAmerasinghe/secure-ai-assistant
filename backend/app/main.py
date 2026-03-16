@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.routes import health, test_protected
+from app.api.routes import auth, health, test_protected, users
 from app.core.config import settings
 from app.core.database import Base, engine
 from app.models import base  # noqa: F401
@@ -24,6 +24,8 @@ app.add_middleware(
 )
 
 app.include_router(health.router)
+app.include_router(auth.router)
+app.include_router(users.router)
 app.include_router(test_protected.router)
 
 
