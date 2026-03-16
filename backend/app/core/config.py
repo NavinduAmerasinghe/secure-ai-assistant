@@ -12,10 +12,11 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./secure_ai_assistant.db"
 
     openai_api_key: str = ""
+    openai_model: str = "gpt-4o-mini"
     vector_db_path: str = "./vectorstore"
 
     max_file_size: int = 1048576
-    upload_dir: str = "backend/uploads"
+    upload_dir: str = "uploads"
 
     frontend_url: str = "http://localhost:5173"
 

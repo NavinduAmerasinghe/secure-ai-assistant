@@ -1,0 +1,1 @@
+In Python, insecure patterns include use of eval, exec, shell execution with shell=True, weak cryptographic functions, and hardcoded credentials. Safer alternatives should be used and dangerous APIs should be avoided unless absolutely necessary.

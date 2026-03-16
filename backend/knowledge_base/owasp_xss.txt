@@ -1,0 +1,1 @@
+Cross-site scripting occurs when untrusted content is rendered in a browser without proper escaping or sanitization. Secure design avoids unsafe rendering patterns and validates or escapes untrusted content.

@@ -1,0 +1,1 @@
+Authentication weaknesses can lead to account compromise and unauthorized access. Secure practices include strong password storage using adaptive hashing, short-lived tokens, secure session handling, and preventing user enumeration.
