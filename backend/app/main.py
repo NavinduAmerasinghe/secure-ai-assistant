@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.routes import auth, health, submissions, test_protected, users
+from app.api.routes import auth, health, scans, submissions, test_protected, users
 from app.core.config import settings
 from app.core.database import Base, engine
 from app.models import base  # noqa: F401
@@ -27,6 +27,7 @@ app.include_router(health.router)
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(submissions.router)
+app.include_router(scans.router)
 app.include_router(test_protected.router)
 
 
