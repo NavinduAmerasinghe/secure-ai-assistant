@@ -464,24 +464,7 @@ const ScanResultPage = () => {
                       {sm.icon}
                       {scanResult.status}
                     </span>
-                    <button
-                      onClick={handleToggleCRAPdf}
-                      style={{
-                        marginLeft: 0,
-                        padding: "12px 28px",
-                        borderRadius: 10,
-                        border: "none",
-                        background: "linear-gradient(90deg,#7c5ef5 0%,#47bfff 100%)",
-                        color: "#fff",
-                        fontWeight: 700,
-                        fontSize: 18,
-                        cursor: "pointer",
-                        boxShadow: "0 2px 8px 0 rgba(124,94,245,0.12)",
-                        transition: "background 0.2s"
-                      }}
-                    >
-                      {craPdfVisible ? "Hide CRA Report" : "Show CRA Report"}
-                    </button>
+             
                     {/* CRA PDF Inline Section */}
                     {craPdfVisible && craPdfUrl && (
                       <div style={{
@@ -544,6 +527,53 @@ const ScanResultPage = () => {
                 )}
 
                 <div className="sr-divider" />
+
+                  {/* CRA Compliance Summary */}
+                  <div style={{
+                    background: 'rgba(99,74,242,0.06)',
+                    border: '1px solid rgba(99,74,242,0.13)',
+                    borderRadius: 12,
+                    padding: '1.2rem 1.5rem',
+                    marginBottom: '2.2rem',
+                    marginTop: '1.5rem',
+                    boxShadow: '0 2px 12px 0 rgba(99,74,242,0.04)'
+                  }}>
+                    <div style={{fontWeight: 700, color: '#7c5ef5', fontSize: 17, marginBottom: 8, fontFamily: 'Syne, sans-serif'}}>CRA Compliance Summary</div>
+                    <table style={{width: '100%', borderCollapse: 'collapse', fontSize: 14, background: 'rgba(255,255,255,0.04)', borderRadius: 8, overflow: 'hidden'}}>
+                      <thead>
+                        <tr style={{background: 'rgba(99,74,242,0.09)', color: '#7c5ef5'}}>
+                          <th style={{padding: '7px 8px', textAlign: 'left'}}>CRA Article</th>
+                          <th style={{padding: '7px 8px', textAlign: 'left'}}>Requirement</th>
+                          <th style={{padding: '7px 8px', textAlign: 'left'}}>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={{padding: '7px 8px'}}>10</td>
+                          <td>Secure Development Lifecycle</td>
+                          <td>{scanResult.vulnerabilities?.length >= 0 ? 'Static analysis performed' : 'N/A'}</td>
+                        </tr>
+                        <tr>
+                          <td style={{padding: '7px 8px'}}>11</td>
+                          <td>General Product Safety</td>
+                          <td>{scanResult.vulnerabilities?.length === 0 ? 'No known vulnerabilities' : `${scanResult.vulnerabilities?.length || 0} vulnerabilities detected`}</td>
+                        </tr>
+                        <tr>
+                          <td style={{padding: '7px 8px'}}>14</td>
+                          <td>Reporting Obligations</td>
+                          <td>Scan results logged</td>
+                        </tr>
+                        <tr>
+                          <td style={{padding: '7px 8px'}}>15</td>
+                          <td>Continuous Monitoring</td>
+                          <td>Automated scan completed</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div style={{fontSize: 13, color: '#7c5ef5', marginTop: 10, opacity: 0.7}}>
+                      This summary maps your scan to key CRA requirements for audit and compliance.
+                    </div>
+                  </div>
 
                 {/* Vulnerabilities section */}
                 <div className="sr-section-header">

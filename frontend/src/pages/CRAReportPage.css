@@ -1,0 +1,65 @@
+.cra-report-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border-radius: 18px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #1a1a1a;
+  backdrop-filter: blur(8px);
+}
+.cra-report-container h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+.cra-report-container h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #2d5a8c;
+  margin-bottom: 2rem;
+}
+.cra-report-container h3 {
+  margin-top: 2rem;
+  color: #2d5a8c;
+  font-size: 1.15rem;
+}
+.cra-report-container p {
+  margin-bottom: 1.1rem;
+  line-height: 1.7;
+}
+.cra-table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.cra-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.98rem;
+}
+.cra-table th, .cra-table td {
+  border: 1px solid #b3c6e0;
+  padding: 0.7rem 0.6rem;
+  text-align: left;
+}
+.cra-table th {
+  background: #e3ecfa;
+  color: #2d5a8c;
+  font-weight: 600;
+}
+.cra-table tr:nth-child(even) {
+  background: #f7fafd;
+}
+@media (max-width: 700px) {
+  .cra-report-container {
+    padding: 1rem 0.3rem;
+  }
+  .cra-table th, .cra-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.92rem;
+  }
+}

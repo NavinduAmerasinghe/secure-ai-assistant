@@ -8,6 +8,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import ScanResultPage from "./pages/ScanResultPage";
 import SubmissionPage from "./pages/SubmissionPage";
+import VulnerabilityListPage from "./pages/VulnerabilityListPage";
+import CRAReportPage from "./pages/CRAReportPage";
 
 function App() {
   return (
@@ -41,7 +43,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/scan/:scanId/vulnerabilities"
+            element={
+              <ProtectedRoute>
+                <VulnerabilityListPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
+           <Route path="/cra-report" element={<CRAReportPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
