@@ -6,7 +6,9 @@ from app.models.vulnerability import Vulnerability
 from app.scanners.bandit_scanner import run_bandit
 from app.scanners.normalizer import normalize_severity
 from app.scanners.secret_scanner import run_secret_scan
+
 from app.scanners.semgrep_scanner import run_semgrep
+from app.scanners.snyk_scanner import run_snyk_scan
 
 
 def _normalize_semgrep_results(results: list[dict]) -> list[dict]:
@@ -70,6 +72,7 @@ def run_scan_for_submission(db: Session, submission: Submission) -> ScanResult:
     if target_path:
         findings.extend(_normalize_semgrep_results(run_semgrep(target_path)))
         findings.extend(_normalize_bandit_results(run_bandit(target_path)))
+        findings.extend(run_snyk_scan(target_path))
     else:
         # For pasted code, write to a temporary file later if you want richer scanning.
         # For now, only secret scan is guaranteed to run on pasted content.

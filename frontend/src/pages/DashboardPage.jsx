@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ScanStepper from "../components/ScanStepper";
 import { Link } from "react-router-dom";
 import { getMySubmissions } from "../services/submissionService";
 import { getScansForSubmission, runScan } from "../services/scanService";
@@ -40,6 +41,7 @@ const DashboardPage = () => {
   const [loading, setLoading]         = useState(true);
   const [scanning, setScanning]       = useState({});
   const [scanError, setScanError]     = useState({});
+  const [scanProgress, setScanProgress] = useState({}); // { [submissionId]: { open, steps: [{label, done}] } }
   const [expanded, setExpanded]       = useState({});
 
   const loadData = async () => {
@@ -67,14 +69,63 @@ const DashboardPage = () => {
   const handleRunScan = async (submissionId) => {
     setScanning((p) => ({ ...p, [submissionId]: true }));
     setScanError((p) => ({ ...p, [submissionId]: "" }));
+    // Define the scan steps you want to show
+    const steps = [
+      { label: "Bandit Scan", done: false },
+      { label: "Semgrep Scan", done: false },
+      { label: "Trivy Scan", done: false },
+      { label: "Snyk Scan", done: false },
+      { label: "", done: false },
+    ];
+    setScanProgress((prev) => ({ ...prev, [submissionId]: { open: true, steps: steps.map(s => ({...s})) } }));
+
+    // Simulate step-by-step progress (replace with real API if available)
+    const updateStep = (idx) => {
+      setScanProgress((prev) => {
+        const curr = prev[submissionId];
+        if (!curr) return prev;
+        const newSteps = curr.steps.map((s, i) => i === idx ? { ...s, done: true } : s);
+        return { ...prev, [submissionId]: { ...curr, steps: newSteps } };
+      });
+    };
+
     try {
-      await runScan(submissionId);
+      // Bandit
+      await runScan(submissionId, { scanner: "bandit" });
+      updateStep(0);
+      // Semgrep
+      await runScan(submissionId, { scanner: "semgrep" });
+      updateStep(1);
+      // Trivy
+      await runScan(submissionId, { scanner: "trivy" });
+      updateStep(2);
+      // Snyk
+      await runScan(submissionId, { scanner: "snyk" });
+      updateStep(3);
+      // Finalizing step (simulate a short wait)
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      updateStep(4);
       await loadData();
+      // Hide the stepper after 2 seconds
+      setTimeout(() => {
+        setScanProgress((prev) => {
+          const updated = { ...prev };
+          delete updated[submissionId];
+          return updated;
+        });
+      }, 2000);
     } catch (error) {
       setScanError((p) => ({
         ...p,
         [submissionId]: error?.response?.data?.detail || "Scan failed",
       }));
+      setTimeout(() => {
+        setScanProgress((prev) => {
+          const updated = { ...prev };
+          delete updated[submissionId];
+          return updated;
+        });
+      }, 2000);
     } finally {
       setScanning((p) => ({ ...p, [submissionId]: false }));
     }
@@ -517,10 +568,10 @@ const DashboardPage = () => {
                         key={submission.id}
                         style={{ animationDelay: `${i * 0.05}s`, animation: "fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) both" }}
                       >
+
                         {/* Header row */}
                         <div className="sub-card-header" onClick={() => toggleExpand(submission.id)}>
                           <div className="sub-type-icon">{langIcon}</div>
-
                           <div className="sub-card-meta">
                             <p className="sub-card-name">
                               {submission.original_filename || "Pasted content"}
@@ -536,8 +587,7 @@ const DashboardPage = () => {
                               )}
                             </div>
                           </div>
-
-                          <div className="sub-card-actions" onClick={(e) => e.stopPropagation()}>
+                          <div className="sub-card-actions" onClick={e => e.stopPropagation()} style={{marginLeft: 12, display: 'flex', alignItems: 'center', gap: 8}}>
                             <button
                               className="run-scan-btn"
                               onClick={() => handleRunScan(submission.id)}
@@ -558,11 +608,17 @@ const DashboardPage = () => {
                               )}
                             </button>
                           </div>
-
                           <svg className={`chevron ${isOpen ? "open" : ""}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="6 9 12 15 18 9"/>
                           </svg>
                         </div>
+                        {/* Stepper below header, above body */}
+                        {isScanning && scanProgress[submission.id]?.steps && (
+                          <div style={{ marginTop: 10, marginBottom: 0, display: 'flex', justifyContent: 'center' }}>
+                            <ScanStepper steps={scanProgress[submission.id].steps} />
+                          </div>
+                        )}
+                     
 
                         {/* Expandable body */}
                         {isOpen && (

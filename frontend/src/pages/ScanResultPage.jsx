@@ -1,12 +1,77 @@
+
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getScanResult } from "../services/scanService";
 import VulnerabilityCard from "../components/VulnerabilityCard";
+import api from "../services/api";
 
 const ScanResultPage = () => {
   const { scanId } = useParams();
   const [scanResult, setScanResult] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // CRA report state
+  const [craReport, setCraReport] = useState("");
+  const [craReportVisible, setCraReportVisible] = useState(false);
+  const [craReportLoading, setCraReportLoading] = useState(false);
+
+  // Fetch CRA report (plain text)
+  const handleToggleCRAReport = async () => {
+    if (craReportVisible) {
+      setCraReportVisible(false);
+      return;
+    }
+    setCraReportVisible(true);
+    setCraReportLoading(true);
+    try {
+      const response = await api.get(`/scans/cra-report/${scanId}`);
+      setCraReport(response.data);
+    } catch (err) {
+      setCraReport("Failed to load CRA report.");
+    } finally {
+      setCraReportLoading(false);
+    }
+  };
+
+  // Download CRA report (plain text)
+  const handleDownloadCRAReport = async () => {
+    try {
+      const response = await api.get(`/scans/cra-report/${scanId}`, { responseType: "blob" });
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: "text/plain" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `CRA_Report_${scanId}.txt`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("Failed to download CRA report.");
+    }
+  };
+
+  // CRA PDF view state
+  const [craPdfUrl, setCraPdfUrl] = useState("");
+  const [craPdfVisible, setCraPdfVisible] = useState(false);
+
+  // Show CRA report PDF inline
+  const handleToggleCRAPdf = async () => {
+    if (craPdfVisible) {
+      setCraPdfVisible(false);
+      setCraPdfUrl("");
+      return;
+    }
+    setCraPdfVisible(true);
+    try {
+      const response = await api.get(`/scans/cra-report-pdf/${scanId}`, { responseType: "blob" });
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+      setCraPdfUrl(url);
+    } catch (err) {
+      setCraPdfUrl("");
+      alert("Failed to load CRA PDF.");
+    }
+  };
 
   useEffect(() => {
     const loadScanResult = async () => {
@@ -19,7 +84,6 @@ const ScanResultPage = () => {
         setLoading(false);
       }
     };
-
     loadScanResult();
   }, [scanId]);
 
@@ -400,6 +464,48 @@ const ScanResultPage = () => {
                       {sm.icon}
                       {scanResult.status}
                     </span>
+                    <button
+                      onClick={handleToggleCRAPdf}
+                      style={{
+                        marginLeft: 0,
+                        padding: "12px 28px",
+                        borderRadius: 10,
+                        border: "none",
+                        background: "linear-gradient(90deg,#7c5ef5 0%,#47bfff 100%)",
+                        color: "#fff",
+                        fontWeight: 700,
+                        fontSize: 18,
+                        cursor: "pointer",
+                        boxShadow: "0 2px 8px 0 rgba(124,94,245,0.12)",
+                        transition: "background 0.2s"
+                      }}
+                    >
+                      {craPdfVisible ? "Hide CRA Report" : "Show CRA Report"}
+                    </button>
+                    {/* CRA PDF Inline Section */}
+                    {craPdfVisible && craPdfUrl && (
+                      <div style={{
+                        margin: "2rem 0 1.5rem 0",
+                        background: "rgba(124,94,245,0.07)",
+                        border: "1px solid rgba(124,94,245,0.18)",
+                        borderRadius: 12,
+                        padding: "1.5rem 1.5rem 1rem 1.5rem",
+                        color: "#e0e0ff",
+                        fontFamily: "monospace",
+                        fontSize: 15,
+                        whiteSpace: "pre-wrap",
+                        position: "relative"
+                      }}>
+                        <div style={{fontWeight: 700, color: "#b6aaff", marginBottom: 8, fontFamily: 'Syne, sans-serif', fontSize: 17}}>Cyber Resilience Act (CRA) Report (PDF)</div>
+                        <iframe
+                          src={craPdfUrl}
+                          title="CRA Report PDF"
+                          width="100%"
+                          height="600px"
+                          style={{ border: "none", borderRadius: 8, background: "#222" }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
 

@@ -266,9 +266,27 @@ const Navbar = () => {
         <div className="navbar-inner">
 
           {/* Logo */}
-          <Link to="/" className="navbar-logo">
-            <div className="navbar-logo-mark">A</div>
-            <span className="navbar-logo-name">Acme</span>
+          <Link to="/" className="navbar-logo" style={{textDecoration: 'none'}}>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1}}>
+              <span style={{
+                fontFamily: 'Merriweather, serif',
+                fontWeight: 400,
+                fontSize: '1.15rem',
+                color: '#f3f0ee',
+                fontStyle: 'italic',
+                letterSpacing: '0.01em',
+                marginBottom: '-2px',
+              }}>Secure AI Assistant</span>
+              <span style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 400,
+                fontSize: '0.72rem',
+                color: '#b3ada8',
+                letterSpacing: '0.13em',
+                marginTop: '6px',
+                marginLeft: '0px',
+              }}>Analyze. Secure. Code Smarter</span>
+            </div>
           </Link>
 
           {/* Nav links */}

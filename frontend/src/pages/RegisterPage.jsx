@@ -447,9 +447,24 @@ const RegisterPage = () => {
         <div className="reg-panel-left">
           <div className="form-card">
 
-            <div className="form-logo">
-              <div className="form-logo-mark">A</div>
-              <span className="form-logo-name">Acme</span>
+            <div className="custom-logo" style={{textAlign: 'center', marginBottom: '2.5rem'}}>
+              <h1 style={{
+                fontFamily: 'Merriweather, serif',
+                fontWeight: 400,
+                fontSize: '1.5rem',
+                color: '#3d3937',
+                margin: 0,
+                letterSpacing: '0.01em',
+                fontStyle: 'italic',
+              }}>Secure AI Assistant</h1>
+              <div style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 400,
+                fontSize: '0.85rem',
+                color: '#5c5753',
+                marginTop: '0.3rem',
+                letterSpacing: '0.13em',
+              }}>Analyze. Secure. Code Smarter</div>
             </div>
 
             <h2 className="form-title">Create account</h2>
@@ -473,7 +488,7 @@ const RegisterPage = () => {
                       type="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@company.com"
+                      placeholder="you@email.com"
                       required
                     />
                   </div>
@@ -493,7 +508,7 @@ const RegisterPage = () => {
                       name="username"
                       value={form.username}
                       onChange={handleChange}
-                      placeholder="johndoe"
+                      placeholder="username"
                       required
                     />
                   </div>
@@ -558,13 +573,13 @@ const RegisterPage = () => {
           <div className="deco-wrap">
             <div className="deco-tag">
               <span className="deco-tag-dot" />
-              Join thousands of users
+              START SECURING YOUR CODE
             </div>
             <h2 className="deco-headline">
-              Everything you<br />need, in <em>one<br />place</em>
+              Everything you<br />need for <em>secure code<br />review</em>
             </h2>
             <p className="deco-body">
-              Create your free account and unlock a powerful workspace built for modern teams and solo creators alike.
+             Create your account to upload code, detect vulnerabilities, and receive grounded AI explanations with safer remediation guidance.
             </p>
             <div className="deco-perks">
               <div className="perk">
@@ -573,7 +588,7 @@ const RegisterPage = () => {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 </span>
-                Secure by default — your data stays yours
+                Scan code for common security issues and risky patterns
               </div>
               <div className="perk">
                 <span className="perk-icon">
@@ -582,7 +597,7 @@ const RegisterPage = () => {
                     <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                   </svg>
                 </span>
-                Available globally, 99.9% uptime guarantee
+                Upload files or paste code for secure analysis
               </div>
               <div className="perk">
                 <span className="perk-icon">
@@ -592,7 +607,7 @@ const RegisterPage = () => {
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                   </svg>
                 </span>
-                Built for teams — invite collaborators instantly
+                Get AI-powered explanations and safer fixes
               </div>
               <div className="perk">
                 <span className="perk-icon">
@@ -600,7 +615,7 @@ const RegisterPage = () => {
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                   </svg>
                 </span>
-                Real-time analytics and smart insights
+               Track submissions, scans, and results in one place
               </div>
             </div>
           </div>

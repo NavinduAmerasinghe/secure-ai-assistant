@@ -45,10 +45,13 @@ const LoginPage = () => {
         .login-root {
           min-height: 100vh;
           display: flex;
+          align-items: center;
+          justify-content: center;
           background: #0a0a0f;
           font-family: 'DM Sans', sans-serif;
           overflow: hidden;
           position: relative;
+          width: 100vw;
         }
 
         /* Ambient background blobs */
@@ -196,7 +199,7 @@ const LoginPage = () => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 100%;
+          width: 100vw;
           min-height: 100vh;
           padding: 2rem;
           position: relative;
@@ -208,12 +211,14 @@ const LoginPage = () => {
             width: 480px;
             flex: 0 0 480px;
             padding: 2rem 3rem;
+            min-height: 100vh;
           }
         }
 
         .form-card {
           width: 100%;
           max-width: 420px;
+          margin: 0 auto;
           animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
@@ -416,6 +421,7 @@ const LoginPage = () => {
           text-align: center;
           font-size: 14px;
           color: rgba(255,255,255,0.35);
+          width: 100%;
         }
 
         .register-link a {
@@ -434,6 +440,7 @@ const LoginPage = () => {
           font-size: 12px;
           color: rgba(255,255,255,0.15);
           text-align: center;
+          width: 100%;
         }
       `}</style>
 
@@ -445,26 +452,26 @@ const LoginPage = () => {
           <div className="panel-inner">
             <div className="panel-tag">
               <span className="panel-tag-dot" />
-              Platform Access
+              SECURE PLATFORM ACCESS
             </div>
             <h1 className="panel-headline">
-              Welcome<br />back to <em>your<br />workspace</em>
+              Welcome<br /> to <em>your secure<br />code workspace</em>
             </h1>
             <p className="panel-body">
-              Sign in to access your dashboard, manage your projects, and collaborate with your team in real time.
+              Sign in to review submitted code, track vulnerability scans, and generate AI-powered secure coding guidance
             </p>
             <div className="panel-stats">
               <div className="stat">
-                <span className="stat-value">99.9%</span>
-                <span className="stat-label">Uptime SLA</span>
+                <span className="stat-value">Protected Access</span>
+                <span className="stat-label">JWT Authentication</span>
               </div>
               <div className="stat">
-                <span className="stat-value">256-bit</span>
-                <span className="stat-label">Encryption</span>
+                <span className="stat-value">Secure Analysis</span>
+                <span className="stat-label">Code & File Scanning</span>
               </div>
               <div className="stat">
-                <span className="stat-value">24/7</span>
-                <span className="stat-label">Support</span>
+                <span className="stat-value">AI Guidance</span>
+                <span className="stat-label">Fix Suggestions</span>
               </div>
             </div>
           </div>
@@ -474,9 +481,25 @@ const LoginPage = () => {
         <div className="login-panel-right">
           <div className="form-card">
 
-            <div className="form-logo">
-              <div className="form-logo-mark">A</div>
-              <span className="form-logo-name">Acme</span>
+
+            <div className="custom-logo" style={{textAlign: 'center', marginBottom: '2.5rem'}}>
+              <h1 style={{
+                fontFamily: 'Merriweather, serif',
+                fontWeight: 400,
+                fontSize: '2.2rem',
+                color: '#3d3937',
+                margin: 0,
+                letterSpacing: '0.01em',
+                fontStyle: 'italic',
+              }}>Secure AI Assistant</h1>
+              <div style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 400,
+                fontSize: '1.05rem',
+                color: '#5c5753',
+                marginTop: '0.5rem',
+                letterSpacing: '0.15em',
+              }}>Analyze. Secure. Code Smarter</div>
             </div>
 
             <h2 className="form-title">Sign in</h2>
@@ -500,7 +523,7 @@ const LoginPage = () => {
                       type="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@company.com"
+                      placeholder="you@email.com"
                       required
                     />
                   </div>

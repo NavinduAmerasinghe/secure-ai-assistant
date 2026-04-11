@@ -1,0 +1,78 @@
+.scan-stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 1.1rem auto 0.7rem auto;
+  gap: 0;
+  width: 100%;
+  max-width: 520px;
+  padding: 0.7rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(30, 32, 45, 0.38);
+  box-shadow: 0 4px 18px 0 rgba(31, 38, 135, 0.13);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border: 1.2px solid rgba(255,255,255,0.10);
+}
+
+.scan-stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 80px;
+  flex: 1 1 0;
+}
+
+.scan-stepper-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #23233a;
+  color: #bfc9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid #35355a;
+  z-index: 1;
+  margin-bottom: 5px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: 0 2px 8px rgba(30,30,40,0.08);
+}
+
+.scan-stepper-circle.done {
+  background: #7ed957;
+  color: #fff;
+  border: 2px solid #7ed957;
+  box-shadow: 0 2px 8px rgba(126,217,87,0.13);
+}
+
+.scan-stepper-label {
+  font-size: 13px;
+  color: #e0e7ef;
+  margin-top: 4px;
+  text-align: center;
+  min-width: 70px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.18);
+  line-height: 1.25;
+}
+
+.scan-stepper-line {
+  position: absolute;
+  top: 13px;
+  left: 100%;
+  width: 38px;
+  height: 3px;
+  background: #35355a;
+  z-index: 0;
+  margin-left: 0;
+  border-radius: 2px;
+}
+
+.scan-stepper-step:last-child .scan-stepper-line {
+  display: none;
+}
