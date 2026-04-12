@@ -1,28 +1,105 @@
 # Secure AI Programming Assistant for Vulnerability Detection and Secure Code Guidance
 
 ## Overview
-This project is a secure web-based application that allows developers to upload or paste source code, scan it for vulnerabilities, and receive AI-assisted secure coding guidance using retrieval-augmented generation (RAG).
 
-## Tech Stack
-- Frontend: React (Vite)
-- Backend: FastAPI
-- Authentication: JWT
-- Security Scanning: Semgrep, Bandit, secret detection
-- AI/RAG: LangChain + Vector Database + OpenAI API
-- Database: SQLite / PostgreSQL
-- DevSecOps: GitHub Actions or Jenkins
+Secure AI Programming Assistant is a full-stack web application designed to help developers write more secure code. The platform allows users to upload or paste their source code, which is then scanned for vulnerabilities using industry-standard tools. Leveraging advanced AI (Retrieval-Augmented Generation, or RAG), the system provides tailored, context-aware secure coding guidance and explanations for detected issues.
 
-## Project Structure
-- `frontend/` - React frontend
-- `backend/` - FastAPI backend
-- `docs/` - project documentation
-- `.github/workflows/` - CI/CD workflows
+## Purpose & Background
 
-## Setup
+Modern software development faces increasing security threats, and many developers lack the resources or expertise to identify and remediate vulnerabilities early. This project bridges that gap by combining automated static analysis tools with AI-driven explanations and recommendations, making secure coding accessible and actionable for all developers.
+
+The assistant integrates traditional security scanners (like Semgrep and Bandit) with a knowledge base and LLMs (via LangChain and OpenAI), providing not just detection but also education and remediation advice. The system is designed with security best practices in mind, including robust authentication, secure file handling, and audit logging.
+
+## How the Tech Stack is Used
+
+- **Frontend (React + Vite):**  
+	Provides a modern, responsive UI for uploading code, viewing scan results, and interacting with AI-generated explanations. Handles authentication and communicates with the backend via REST APIs.
+
+- **Backend (FastAPI):**  
+	Exposes secure REST endpoints for authentication, file upload, scanning, and AI guidance. Manages user sessions with JWT and orchestrates the scanning and AI explanation workflows.
+
+- **Authentication (JWT):**  
+	Ensures only authorized users can access sensitive features and their own scan results.
+
+- **Security Scanning (Semgrep, Bandit, Secret Detection):**  
+	Runs static analysis on uploaded code to detect common vulnerabilities, insecure patterns, and secrets.
+
+- **AI/RAG (LangChain, Vector Database, OpenAI API):**  
+	Uses retrieval-augmented generation to provide context-aware, human-readable explanations and secure coding advice, referencing both the code and a curated knowledge base.
+
+- **Database (SQLite/PostgreSQL):**  
+	Stores user data, scan results, explanations, and knowledge base vectors.
+
+- **DevSecOps (GitHub Actions/Jenkins):**  
+	Automates testing, linting, and deployment to ensure code quality and security throughout the development lifecycle.
+
+## Project Folder Structure
+
+```
+secure-ai-assistant/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/                # API route definitions and dependencies
+│   │   ├── core/               # Core config, security, database, logging
+│   │   ├── models/             # SQLAlchemy models for users, scans, etc.
+│   │   ├── rag/                # RAG logic: knowledge loader, retriever, prompt builder
+│   │   ├── scanners/           # Security scanner integrations (Semgrep, Bandit, etc.)
+│   │   ├── schemas/            # Pydantic schemas for API validation
+│   │   ├── security/           # Security utilities
+│   │   ├── services/           # Business logic (auth, scan, explanation, submission)
+│   │   └── knowledge_base/     # Curated security knowledge files
+│   ├── tests/                  # Backend unit and integration tests
+│   ├── uploads/                # Temporary storage for uploaded code files
+│   ├── vectorstore/            # Vector database for RAG
+│   └── requirements.txt        # Python dependencies
+│
+├── frontend/
+│   ├── public/                 # Static assets
+│   ├── src/
+│   │   ├── components/         # Reusable React components
+│   │   ├── context/            # React context providers (e.g., Auth)
+│   │   ├── hooks/              # Custom React hooks
+│   │   ├── pages/              # Page-level React components
+│   │   ├── services/           # API service wrappers
+│   │   └── utils/              # Utility functions
+│   ├── index.html
+│   ├── package.json
+│   └── ... (Vite/React config files)
+│
+├── docs/                       # Project documentation
+├── .github/workflows/          # CI/CD workflows
+└── README.md                   # Project overview and setup instructions
+```
+
+## How It Works
+
+1. **User uploads or pastes code via the frontend.**
+2. **Backend scans the code** using Semgrep, Bandit, and secret detection tools.
+3. **Scan results are stored** and associated with the user.
+4. **For each vulnerability,** the backend uses RAG (LangChain + OpenAI + knowledge base) to generate a detailed, context-aware explanation and secure coding advice.
+5. **Frontend displays results** and AI guidance, helping users understand and fix vulnerabilities.
+
+## Getting Started
+
 ### Backend
+
 ```bash
 cd backend
 python -m venv venv
 # activate venv
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Contributing
+
+Contributions are welcome! Please see the `docs/` folder and open issues or pull requests as needed.
