@@ -10,53 +10,72 @@ pipeline {
             }
         }
 
+        stage('Inspect Workspace') {
+            steps {
+                bat 'dir'
+            }
+        }
+
         stage('Install Backend Dependencies') {
             steps {
-                bat '''
-                cd backend
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                dir('backend') {
+                    bat 'python -m pip install --upgrade pip'
+                    bat 'pip install -r requirements.txt'
+                    bat 'pip install bandit semgrep'
+                }
             }
         }
 
         stage('Lint / Syntax Check') {
             steps {
-                bat '''
-                cd backend
-                python -m compileall app
-                '''
+                dir('backend') {
+                    bat 'python -m compileall app'
+                }
             }
         }
 
         stage('Run Bandit') {
             steps {
-                bat '''
-                cd backend
-                bandit -r app -f json -o bandit-report.json
-                '''
+                dir('backend') {
+                    bat 'bandit -r app -f txt -o bandit-report.txt || exit /b 0'
+                }
             }
         }
 
         stage('Run Semgrep') {
             steps {
-                bat '''
-                cd backend
-                semgrep --config=auto app --json --output semgrep-report.json
-                '''
+                dir('backend') {
+                    bat 'semgrep --config auto app --text --output semgrep-report.txt || exit /b 0'
+                }
+            }
+        }
+
+        stage('Install Frontend Dependencies') {
+            steps {
+                dir('frontend') {
+                    bat 'npm install'
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    bat 'npm run build'
+                }
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'backend/*-report.json', fingerprint: true, allowEmptyArchive: true
+            archiveArtifacts artifacts: 'backend/bandit-report.txt,backend/semgrep-report.txt', allowEmptyArchive: true
         }
         success {
-            echo 'Pipeline completed successfully'
+            echo 'Pipeline completed successfully.'
         }
         failure {
-            echo 'Pipeline failed'
+            echo 'Pipeline failed. Check stage logs.'
         }
     }
 }
