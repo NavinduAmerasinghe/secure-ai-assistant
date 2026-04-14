@@ -20,7 +20,7 @@ pipeline {
             steps {
                 dir('backend') {
                     bat 'python -m pip install --upgrade pip'
-                    bat 'pip install -r requirements.txt'
+                    bat 'pip install -r requirements-ci.txt'
                     bat 'pip install bandit semgrep'
                 }
             }
