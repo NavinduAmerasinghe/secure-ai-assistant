@@ -10,6 +10,7 @@ import ScanResultPage from "./pages/ScanResultPage";
 import SubmissionPage from "./pages/SubmissionPage";
 import VulnerabilityListPage from "./pages/VulnerabilityListPage";
 import CRAReportPage from "./pages/CRAReportPage";
+import KnowledgeBasePage from "./pages/KnowledgeBasePage";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
            <Route path="/cra-report" element={<CRAReportPage />} />
+          <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
