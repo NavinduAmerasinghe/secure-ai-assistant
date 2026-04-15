@@ -1,0 +1,19 @@
+CWE-862: Missing Authorization
+
+What it means:
+Missing authorization means the application does not check if a user has permission to perform an action or access data.
+
+Why it is risky:
+Attackers or regular users can access or modify data they should not be able to, leading to data breaches or privilege escalation.
+
+Common insecure coding examples:
+- Not checking user roles before accessing admin features.
+- Allowing direct access to sensitive URLs or APIs.
+
+Secure remediation guidance:
+- Always check user permissions for every action.
+- Implement role-based access control (RBAC).
+- Deny access by default unless explicitly allowed.
+
+Relation to OWASP Top 10:
+Missing authorization is covered under OWASP Top 10: A01:2021 – Broken Access Control.

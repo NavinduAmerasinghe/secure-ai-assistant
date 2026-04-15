@@ -1,0 +1,19 @@
+CWE-20: Improper Input Validation
+
+What it means:
+Improper input validation happens when an application does not check or sanitize user input. Attackers can send unexpected or malicious data to exploit the system.
+
+Why it is risky:
+It can lead to many vulnerabilities, including injection attacks, buffer overflows, and denial of service.
+
+Common insecure coding examples:
+- Accepting any input without checks.
+- Not validating file uploads or URLs.
+
+Secure remediation guidance:
+- Validate input length, type, format, and range.
+- Use allow-lists for acceptable values.
+- Reject or sanitize unexpected input.
+
+Relation to OWASP Top 10:
+Improper input validation is a root cause for many OWASP Top 10 risks, including A03:2021 – Injection and A05:2021 – Security Misconfiguration.

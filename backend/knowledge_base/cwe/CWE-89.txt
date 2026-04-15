@@ -1,0 +1,19 @@
+CWE-89: SQL Injection
+
+What it means:
+SQL Injection happens when an application allows user input to modify SQL queries. Attackers can inject malicious SQL code to access or change data in the database.
+
+Why it is risky:
+SQL Injection can lead to unauthorized data access, data loss, or even full control over the database server. It is a major cause of data breaches.
+
+Common insecure coding examples:
+- Building SQL queries by concatenating user input directly.
+- Not using parameterized queries or prepared statements.
+
+Secure remediation guidance:
+- Always use parameterized queries or prepared statements.
+- Validate and sanitize user input.
+- Use least privilege for database accounts.
+
+Relation to OWASP Top 10:
+SQL Injection is covered under OWASP Top 10: A03:2021 – Injection.

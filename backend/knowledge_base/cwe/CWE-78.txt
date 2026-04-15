@@ -1,0 +1,20 @@
+CWE-78: OS Command Injection
+
+What it means:
+OS Command Injection occurs when an application passes unsafe user input to a system shell or command interpreter. Attackers can execute arbitrary commands on the server.
+
+Why it is risky:
+This can lead to full system compromise, data theft, or destruction. Attackers may gain control over the server or network.
+
+Common insecure coding examples:
+- Using user input directly in system() or exec() calls.
+- Concatenating user input into shell commands.
+
+Secure remediation guidance:
+- Avoid calling system commands with user input.
+- Use safe APIs or libraries instead of shell commands.
+- Validate and sanitize all user input.
+- Use allow-lists for acceptable values.
+
+Relation to OWASP Top 10:
+OS Command Injection is covered under OWASP Top 10: A03:2021 – Injection.
