@@ -1,0 +1,33 @@
+Secure TypeScript Coding
+
+Common Insecure Patterns:
+- Using any type excessively, bypassing type safety
+- Trusting user input in DOM or server logic
+- Insecure use of eval(), Function(), or template literals with user data
+
+Dangerous Functions/APIs to Avoid:
+- eval(), Function(), document.write(), innerHTML (with untrusted data)
+- setTimeout/setInterval with string arguments
+- (Node.js) child_process.exec() with user input
+
+Secure Handling of Input:
+- Use strict types and interfaces for input
+- Validate and sanitize all external data
+
+Authentication/Session Concerns:
+- Use secure cookies and HTTP headers
+- Avoid storing sensitive tokens in browser storage
+
+Subprocess/Command Execution Safety:
+- Use child_process.spawn() with argument arrays
+- Never interpolate user input into shell commands
+
+Secret Handling Guidance:
+- Store secrets in environment variables or secret managers
+- Never commit secrets to repositories
+
+Safer Coding Recommendations:
+- Enable strict type checking (strict: true in tsconfig)
+- Use linters and security tools (eslint, npm audit)
+- Keep dependencies updated
+- Prefer frameworks that auto-escape output

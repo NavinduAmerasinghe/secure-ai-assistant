@@ -1,0 +1,17 @@
+SQL Injection Prevention Cheat Sheet
+
+Key Secure Coding Rules:
+- Always use parameterized queries or prepared statements.
+- Validate and sanitize user input.
+- Use least privilege for database accounts.
+
+What Developers Should Avoid:
+- Concatenating user input into SQL queries.
+- Using dynamic SQL without safeguards.
+
+Safer Alternatives:
+- Use ORM frameworks or query builders.
+- Employ stored procedures with care.
+
+Remediation Guidance:
+- Refactor code to use safe query methods and review all database interactions.

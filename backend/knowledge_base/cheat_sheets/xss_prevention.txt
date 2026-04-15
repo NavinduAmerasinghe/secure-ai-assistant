@@ -1,0 +1,17 @@
+XSS Prevention Cheat Sheet
+
+Key Secure Coding Rules:
+- Escape or encode all user input before displaying in web pages.
+- Use frameworks that auto-escape output.
+- Implement Content Security Policy (CSP).
+
+What Developers Should Avoid:
+- Inserting raw user input into HTML, JS, or CSS.
+- Using innerHTML or document.write with untrusted data.
+
+Safer Alternatives:
+- Use safe templating engines.
+- Sanitize input with trusted libraries.
+
+Remediation Guidance:
+- Review all output points and enforce output encoding.
