@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api.routes import auth, explanations, health, scans, submissions, test_protected, users
+from app.api.routes import auth, explanations, health, scans, submissions, test_protected, users, knowledge_base
 from app.core.config import settings
 from app.core.database import Base, engine
 from app.models import base  # noqa: F401
@@ -40,6 +40,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(health.router)
 app.include_router(auth.router)
 app.include_router(users.router)
@@ -47,6 +48,7 @@ app.include_router(submissions.router)
 app.include_router(scans.router)
 app.include_router(explanations.router)
 app.include_router(test_protected.router)
+app.include_router(knowledge_base.router)
 
 @app.get("/", tags=["Root"])
 def root():

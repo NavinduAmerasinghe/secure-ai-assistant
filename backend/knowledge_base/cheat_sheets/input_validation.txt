@@ -1,0 +1,18 @@
+Input Validation Cheat Sheet
+
+Key Secure Coding Rules:
+- Validate all user input for type, length, format, and range.
+- Use allow-lists (whitelists) for acceptable values.
+- Reject or sanitize unexpected input.
+
+What Developers Should Avoid:
+- Blindly trusting user input.
+- Relying only on client-side validation.
+- Accepting input without checks.
+
+Safer Alternatives:
+- Use server-side validation libraries.
+- Apply strict schemas for data.
+
+Remediation Guidance:
+- Review all input points and enforce validation on the server side.

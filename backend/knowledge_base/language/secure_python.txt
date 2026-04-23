@@ -1,0 +1,33 @@
+Secure Python Coding
+
+Common Insecure Patterns:
+- Using eval(), exec(), or input() unsafely
+- Trusting user input in file or OS operations
+- Hardcoding secrets in code
+- Insecure deserialization (pickle, yaml.load without Loader)
+
+Dangerous Functions/APIs to Avoid:
+- eval(), exec(), os.system(), subprocess with shell=True
+- pickle (for untrusted data), yaml.load (without SafeLoader)
+
+Secure Handling of Input:
+- Always validate and sanitize user input
+- Use type checks and allow-lists
+
+Authentication/Session Concerns:
+- Use secure session management (e.g., FastAPI/Flask session libraries)
+- Store session data securely, use HTTPS
+
+Subprocess/Command Execution Safety:
+- Prefer subprocess.run() with a list of arguments and shell=False
+- Never pass user input directly to shell commands
+
+Secret Handling Guidance:
+- Store secrets in environment variables or secret managers
+- Never commit secrets to version control
+
+Safer Coding Recommendations:
+- Use parameterized queries for databases
+- Keep dependencies updated
+- Use linters and security tools (bandit, safety)
+- Apply least privilege for file and network access

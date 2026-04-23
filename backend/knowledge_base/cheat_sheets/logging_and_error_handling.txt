@@ -1,0 +1,17 @@
+Logging and Error Handling Cheat Sheet
+
+Key Secure Coding Rules:
+- Log security-relevant events (auth, access, errors).
+- Avoid logging sensitive data (passwords, secrets).
+- Handle errors gracefully and securely.
+
+What Developers Should Avoid:
+- Exposing stack traces or internal errors to users.
+- Logging sensitive information.
+
+Safer Alternatives:
+- Use centralized, secure logging solutions.
+- Mask or redact sensitive data in logs.
+
+Remediation Guidance:
+- Review logging and error handling for information leaks and improve error messages.

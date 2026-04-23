@@ -1,0 +1,20 @@
+CWE-79: Cross-Site Scripting (XSS)
+
+What it means:
+Cross-Site Scripting occurs when an application includes untrusted data in a web page without proper validation or escaping. Attackers can inject malicious scripts into content that other users see.
+
+Why it is risky:
+XSS can allow attackers to steal cookies, hijack sessions, deface websites, or redirect users to malicious sites. It is a common way to compromise user accounts and sensitive data.
+
+Common insecure coding examples:
+- Displaying user comments on a page without escaping HTML tags.
+- Using user input directly in innerHTML or document.write in JavaScript.
+
+Secure remediation guidance:
+- Always escape or encode user input before displaying it in web pages.
+- Use frameworks that automatically handle escaping.
+- Validate and sanitize all user input.
+- Implement Content Security Policy (CSP).
+
+Relation to OWASP Top 10:
+XSS is covered under OWASP Top 10: A07:2021 – Cross-Site Scripting.

@@ -1,0 +1,19 @@
+CWE-798: Use of Hard-coded Credentials
+
+What it means:
+Hardcoded credentials are usernames, passwords, or keys written directly in source code. Attackers who access the code can easily find and use these secrets.
+
+Why it is risky:
+If exposed, hardcoded credentials can allow attackers to access sensitive systems, databases, or cloud services. They are difficult to change and often reused.
+
+Common insecure coding examples:
+- Writing database passwords directly in code files.
+- Including API keys in public repositories.
+
+Secure remediation guidance:
+- Store credentials in environment variables or secure vaults.
+- Never commit secrets to version control.
+- Rotate credentials regularly.
+
+Relation to OWASP Top 10:
+Hardcoded credentials relate to OWASP Top 10: A02:2021 – Cryptographic Failures and A07:2021 – Identification and Authentication Failures.

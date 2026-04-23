@@ -1,0 +1,17 @@
+Secure File Upload Cheat Sheet
+
+Key Secure Coding Rules:
+- Validate file type, size, and content.
+- Store uploads outside the web root.
+- Rename files to avoid collisions and path traversal.
+
+What Developers Should Avoid:
+- Trusting file extensions alone.
+- Allowing executable files to be uploaded.
+
+Safer Alternatives:
+- Use allow-lists for file types.
+- Scan files for malware.
+
+Remediation Guidance:
+- Review upload handling and restrict file access permissions.

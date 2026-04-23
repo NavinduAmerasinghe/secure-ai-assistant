@@ -1,0 +1,19 @@
+CWE-306: Missing Authentication for Critical Function
+
+What it means:
+This occurs when important functions (like changing passwords or deleting data) do not require users to prove their identity.
+
+Why it is risky:
+Attackers can perform sensitive actions without logging in, leading to data loss, account takeover, or system compromise.
+
+Common insecure coding examples:
+- Allowing password reset or admin actions without login.
+- Exposing sensitive APIs without authentication.
+
+Secure remediation guidance:
+- Require authentication for all critical functions.
+- Use strong authentication mechanisms.
+- Regularly review access controls.
+
+Relation to OWASP Top 10:
+Missing authentication is covered under OWASP Top 10: A07:2021 – Identification and Authentication Failures.

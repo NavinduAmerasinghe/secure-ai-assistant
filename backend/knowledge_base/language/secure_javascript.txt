@@ -1,0 +1,32 @@
+Secure JavaScript Coding
+
+Common Insecure Patterns:
+- Using eval(), Function(), or setTimeout/setInterval with strings
+- Trusting user input in DOM manipulation
+- Storing secrets in client-side code
+
+Dangerous Functions/APIs to Avoid:
+- eval(), Function(), document.write(), innerHTML (with untrusted data)
+- setTimeout/setInterval with string arguments
+
+Secure Handling of Input:
+- Always validate and sanitize input before using in DOM or logic
+- Use allow-lists for expected values
+
+Authentication/Session Concerns:
+- Use secure cookies (HttpOnly, Secure, SameSite)
+- Avoid storing tokens in localStorage/sessionStorage
+
+Subprocess/Command Execution Safety:
+- On Node.js, avoid child_process.exec() with user input
+- Use child_process.spawn() with argument arrays
+
+Secret Handling Guidance:
+- Never expose secrets in frontend code
+- Use environment variables or secret managers on the server
+
+Safer Coding Recommendations:
+- Use frameworks that auto-escape output (React, Vue)
+- Keep dependencies updated (npm audit)
+- Apply Content Security Policy (CSP)
+- Avoid prototype pollution

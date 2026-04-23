@@ -1,0 +1,19 @@
+CWE-327: Broken or Risky Cryptographic Algorithm
+
+What it means:
+This refers to using outdated, weak, or broken cryptographic algorithms (like MD5, SHA1, or DES) that attackers can break or exploit.
+
+Why it is risky:
+Weak cryptography can allow attackers to decrypt sensitive data, forge signatures, or bypass authentication.
+
+Common insecure coding examples:
+- Using MD5 or SHA1 for password hashing.
+- Encrypting data with DES or RC4.
+
+Secure remediation guidance:
+- Use strong, modern algorithms (e.g., AES, SHA-256, bcrypt, Argon2).
+- Keep cryptographic libraries up to date.
+- Follow current security standards and recommendations.
+
+Relation to OWASP Top 10:
+Broken cryptography is covered under OWASP Top 10: A02:2021 – Cryptographic Failures.

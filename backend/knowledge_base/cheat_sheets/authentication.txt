@@ -1,0 +1,17 @@
+Authentication Cheat Sheet
+
+Key Secure Coding Rules:
+- Require authentication for all sensitive actions.
+- Use strong, proven authentication mechanisms.
+- Implement account lockout and monitoring.
+
+What Developers Should Avoid:
+- Rolling your own authentication logic.
+- Using weak or default credentials.
+
+Safer Alternatives:
+- Use established libraries or frameworks for authentication.
+- Enable multi-factor authentication (MFA).
+
+Remediation Guidance:
+- Regularly review authentication flows and update to follow best practices.
