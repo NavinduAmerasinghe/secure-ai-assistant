@@ -100,6 +100,34 @@ npm install
 npm run dev
 ```
 
+## Docker Setup (Quick Start)
+
+Follow these simple steps to run the entire stack using Docker:
+
+1. **Build and start all services:**
+   ```sh
+   docker compose up --build
+   ```
+   This will build and start both the backend and frontend containers.
+
+2. **Access the application:**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:8000
+
+3. **Environment variables:**
+   - Backend: Copy `.env.example` to `.env` and fill in your secrets (API keys, DB, etc).
+   - Frontend: Ensure `.env` exists with `VITE_API_BASE_URL` set (see frontend/.env.example).
+
+4. **Stopping containers:**
+   ```sh
+   docker compose down
+   ```
+
+**Note:**
+- Make sure Docker is installed and running on your system.
+- The backend will use SQLite by default unless you configure PostgreSQL in your `.env` file.
+- For production, review and secure all environment variables and secrets.
+
 ## Contributing
 
 Contributions are welcome! Please see the `docs/` folder and open issues or pull requests as needed.
