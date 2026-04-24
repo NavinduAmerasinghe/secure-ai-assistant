@@ -74,7 +74,7 @@ secure-ai-assistant/
 
 ## How This Works
 
-1. **User uploads or pastes code via the frontend.**
+1. **User uploads or pastesee code via the frontend.**
 2. **Backend scans the code** using Semgrep, Bandit, and secret detection tools.
 3. **Scan results are stored** and associated with the user.
 4. **For each vulnerability,** the backend uses RAG (LangChain + OpenAI + knowledge base) to generate a detailed, context-aware explanation and secure coding advice.
