@@ -72,7 +72,7 @@ secure-ai-assistant/
 └── README.md                   # Project overview and setup instructions
 ```
 
-## How It Works
+## How This Works
 
 1. **User uploads or pastes code via the frontend.**
 2. **Backend scans the code** using Semgrep, Bandit, and secret detection tools.
