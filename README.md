@@ -1,3 +1,5 @@
+![Logo](frontend/src/assets/logo.png)
+
 # Secure AI Programming Assistant for Vulnerability Detection and Secure Code Guidance
 
 ## Overview
