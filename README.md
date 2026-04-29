@@ -6,6 +6,10 @@
 
 Secure AI Programming Assistant is a full-stack web application designed to help developers write more secure code. The platform allows users to upload or paste their source code, which is then scanned for vulnerabilities using industry-standard tools. Leveraging advanced AI (Retrieval-Augmented Generation, or RAG), the system provides tailored, context-aware secure coding guidance and explanations for detected issues.
 
+## System Diagram
+
+![System Diagram](assets/simplearchitecturediagram.png)
+
 ## Purpose & Background
 
 Modern software development faces increasing security threats, and many developers lack the resources or expertise to identify and remediate vulnerabilities early. This project bridges that gap by combining automated static analysis tools with AI-driven explanations and recommendations, making secure coding accessible and actionable for all developers.
@@ -115,6 +119,7 @@ Follow these simple steps to run the entire stack using Docker:
 2. **Access the application:**
    - Frontend: http://localhost:5173
    - Backend API: http://localhost:8000
+   - Swagger API Docs: http://127.0.0.1:8000/docs#/
 
 3. **Environment variables:**
    - Backend: Copy `.env.example` to `.env` and fill in your secrets (API keys, DB, etc).
