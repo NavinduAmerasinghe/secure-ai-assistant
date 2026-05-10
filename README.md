@@ -4,138 +4,400 @@
 
 ## Overview
 
-Secure AI Programming Assistant is a full-stack web application designed to help developers write more secure code. The platform allows users to upload or paste their source code, which is then scanned for vulnerabilities using industry-standard tools. Leveraging advanced AI (Retrieval-Augmented Generation, or RAG), the system provides tailored, context-aware secure coding guidance and explanations for detected issues.
+Secure AI Programming Assistant is a full-stack web application designed to help developers write more secure software. The platform allows users to upload or paste source code, which is then analyzed using industry-standard vulnerability scanning tools. By leveraging Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs), the system provides intelligent, context-aware explanations and secure coding guidance for detected vulnerabilities.
 
-## System Diagram
+The goal of the system is not only to identify security issues, but also to educate developers by providing understandable remediation suggestions and best practices aligned with modern secure software development principles.
 
-![System Diagram](frontend/src/assets/simplearchitecturediagram.png)
+---
+
+## System Architecture
+
 <img src="frontend/src/assets/simplearchitecturediagram.png" alt="System Diagram" width="450"/>
+
+---
 
 ## Purpose & Background
 
-Modern software development faces increasing security threats, and many developers lack the resources or expertise to identify and remediate vulnerabilities early. This project bridges that gap by combining automated static analysis tools with AI-driven explanations and recommendations, making secure coding accessible and actionable for all developers.
+Modern software systems face increasing cybersecurity threats, while many developers lack the tools or expertise required to identify and remediate vulnerabilities early in the development lifecycle.
 
-The assistant integrates traditional security scanners (like Semgrep and Bandit) with a knowledge base and LLMs (via LangChain and OpenAI), providing not just detection but also education and remediation advice. The system is designed with security best practices in mind, including robust authentication, secure file handling, and audit logging.
+This project bridges that gap by combining:
 
-## How the Tech Stack is Used
+- Automated static security analysis
+- AI-assisted vulnerability explanations
+- Secure coding recommendations
+- Retrieval-Augmented Generation (RAG)
+- Secure software engineering principles
 
-- **Frontend (React + Vite):**  
-	Provides a modern, responsive UI for uploading code, viewing scan results, and interacting with AI-generated explanations. Handles authentication and communicates with the backend via REST APIs.
+The platform integrates security scanning tools such as Semgrep and Bandit with a curated security knowledge base and OpenAI-powered language models via LangChain.
 
-- **Backend (FastAPI):**  
-	Exposes secure REST endpoints for authentication, file upload, scanning, and AI guidance. Manages user sessions with JWT and orchestrates the scanning and AI explanation workflows.
+Rather than simply reporting vulnerabilities, the system explains:
+- Why the issue is dangerous
+- Which secure coding principles are violated
+- How developers can securely remediate the issue
+- References to OWASP and CWE standards
 
-- **Authentication (JWT):**  
-	Ensures only authorized users can access sensitive features and their own scan results.
+The system itself is also designed following secure programming principles, including:
+- JWT-based authentication
+- Secure file handling
+- API validation
+- Logging and audit support
+- Dockerized deployment
+- DevSecOps workflows
 
-- **Security Scanning (Semgrep, Bandit, Secret Detection):**  
-	Runs static analysis on uploaded code to detect common vulnerabilities, insecure patterns, and secrets.
+---
 
-- **AI/RAG (LangChain, Vector Database, OpenAI API):**  
-	Uses retrieval-augmented generation to provide context-aware, human-readable explanations and secure coding advice, referencing both the code and a curated knowledge base.
+# Features
 
-- **Database (SQLite/PostgreSQL):**  
-	Stores user data, scan results, explanations, and knowledge base vectors.
+- Secure user authentication using JWT
+- Source code upload and manual code input
+- Automated vulnerability scanning
+- AI-generated secure coding explanations
+- OWASP and CWE aligned remediation guidance
+- Retrieval-Augmented Generation (RAG) support
+- Scan result history and storage
+- Dockerized deployment
+- CI/CD pipeline integration
+- REST API architecture
+- Responsive frontend interface
 
-- **DevSecOps (GitHub Actions/Jenkins):**  
-	Automates testing, linting, and deployment to ensure code quality and security throughout the development lifecycle.
+---
 
-## Project Folder Structure
+# Technology Stack
 
-```
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, Tailwind CSS |
+| Backend | FastAPI, Python |
+| Authentication | JWT |
+| Security Scanning | Semgrep, Bandit, Secret Detection |
+| AI & RAG | LangChain, OpenAI API, Vector Database |
+| Database | SQLite / PostgreSQL |
+| DevOps | Docker, GitHub Actions, Jenkins |
+| API Documentation | Swagger/OpenAPI |
+
+---
+
+# How the Tech Stack is Used
+
+## Frontend (React + Vite)
+
+Provides a modern and responsive user interface for:
+- Uploading source code
+- Viewing vulnerability reports
+- Displaying AI-generated explanations
+- Managing authentication and sessions
+
+The frontend communicates with the backend through secure REST APIs.
+
+---
+
+## Backend (FastAPI)
+
+The backend exposes secure REST endpoints for:
+- Authentication
+- File uploads
+- Vulnerability scanning
+- AI explanation generation
+- Scan result management
+
+It orchestrates the scanning pipeline and AI workflows while maintaining secure communication using JWT authentication.
+
+---
+
+## Authentication (JWT)
+
+JWT-based authentication ensures:
+- Secure user login
+- Protected API endpoints
+- User-specific scan access
+- Session management
+
+---
+
+## Security Scanning
+
+The system integrates multiple security scanning tools:
+
+### Semgrep
+Detects:
+- Insecure coding patterns
+- OWASP-related vulnerabilities
+- Common programming mistakes
+
+### Bandit
+Performs Python-specific static security analysis.
+
+### Secret Detection
+Identifies:
+- Hardcoded credentials
+- API keys
+- Sensitive secrets
+
+---
+
+## AI & Retrieval-Augmented Generation (RAG)
+
+The AI layer uses:
+- LangChain
+- OpenAI APIs
+- Vector databases
+- Curated security knowledge bases
+
+This allows the system to generate:
+- Context-aware vulnerability explanations
+- Secure remediation guidance
+- Human-readable security education
+
+The RAG pipeline combines:
+1. Scan findings
+2. Security documentation
+3. OWASP references
+4. CWE references
+5. LLM reasoning
+
+---
+
+## Database Layer
+
+SQLite or PostgreSQL is used to store:
+- User information
+- Scan history
+- Vulnerability results
+- AI-generated explanations
+- Vector embeddings
+
+---
+
+## DevSecOps Integration
+
+GitHub Actions and Jenkins are used for:
+- Automated testing
+- Security validation
+- Linting
+- CI/CD workflows
+- Dockerized deployment automation
+
+---
+
+# Project Folder Structure
+
+```bash
 secure-ai-assistant/
 │
 ├── backend/
 │   ├── app/
-│   │   ├── api/                # API route definitions and dependencies
-│   │   ├── core/               # Core config, security, database, logging
-│   │   ├── models/             # SQLAlchemy models for users, scans, etc.
-│   │   ├── rag/                # RAG logic: knowledge loader, retriever, prompt builder
-│   │   ├── scanners/           # Security scanner integrations (Semgrep, Bandit, etc.)
-│   │   ├── schemas/            # Pydantic schemas for API validation
+│   │   ├── api/                # API route definitions
+│   │   ├── core/               # Config, database, security, logging
+│   │   ├── models/             # SQLAlchemy models
+│   │   ├── rag/                # RAG pipeline logic
+│   │   ├── scanners/           # Scanner integrations
+│   │   ├── schemas/            # Pydantic schemas
 │   │   ├── security/           # Security utilities
-│   │   ├── services/           # Business logic (auth, scan, explanation, submission)
-│   │   └── knowledge_base/     # Curated security knowledge files
-│   ├── tests/                  # Backend unit and integration tests
-│   ├── uploads/                # Temporary storage for uploaded code files
-│   ├── vectorstore/            # Vector database for RAG
-│   └── requirements.txt        # Python dependencies
+│   │   ├── services/           # Business logic
+│   │   └── knowledge_base/     # Security knowledge files
+│   │
+│   ├── tests/                  # Backend tests
+│   ├── uploads/                # Temporary uploaded files
+│   ├── vectorstore/            # Vector database storage
+│   └── requirements.txt
 │
 ├── frontend/
-│   ├── public/                 # Static assets
+│   ├── public/
 │   ├── src/
-│   │   ├── components/         # Reusable React components
-│   │   ├── context/            # React context providers (e.g., Auth)
-│   │   ├── hooks/              # Custom React hooks
-│   │   ├── pages/              # Page-level React components
-│   │   ├── services/           # API service wrappers
-│   │   └── utils/              # Utility functions
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── utils/
+│   │
 │   ├── index.html
 │   ├── package.json
-│   └── ... (Vite/React config files)
+│   └── vite.config.js
 │
-├── docs/                       # Project documentation
-├── .github/workflows/          # CI/CD workflows
-└── README.md                   # Project overview and setup instructions
+├── docs/
+├── .github/workflows/
+└── README.md
 ```
 
-## How This Works
+---
 
-1. **User uploads or pastesee code via the frontend.**
-2. **Backend scans the code** using Semgrep, Bandit, and secret detection tools.
-3. **Scan results are stored** and associated with the user.
-4. **For each vulnerability,** the backend uses RAG (LangChain + OpenAI + knowledge base) to generate a detailed, context-aware explanation and secure coding advice.
-5. **Frontend displays results** and AI guidance, helping users understand and fix vulnerabilities.
+# System Workflow
 
-## Getting Started
+1. User uploads or pastes source code through the frontend.
+2. Backend securely processes the request.
+3. Security scanners analyze the code.
+4. Vulnerabilities and insecure patterns are detected.
+5. Results are stored in the database.
+6. RAG retrieves relevant security knowledge.
+7. OpenAI generates context-aware explanations.
+8. Frontend displays vulnerabilities and remediation guidance.
 
-### Backend
+---
+
+# Getting Started
+
+## Backend Setup
 
 ```bash
 cd backend
+
 python -m venv venv
-# activate venv
+
+# Activate virtual environment
+
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+source venv/bin/activate
+
 pip install -r requirements.txt
+
 uvicorn app.main:app --reload
 ```
 
-### Frontend
+Backend runs on:
+```txt
+http://127.0.0.1:8000
+```
+
+Swagger API Docs:
+```txt
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-## Docker Setup (Quick Start)
+Frontend runs on:
+```txt
+http://localhost:5173
+```
 
-Follow these simple steps to run the entire stack using Docker:
+---
 
-1. **Build and start all services:**
-   ```sh
-   docker compose up --build
-   ```
-   This will build and start both the backend and frontend containers.
+# Docker Setup (Recommended)
 
-2. **Access the application:**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:8000
-   - Swagger API Docs: http://127.0.0.1:8000/docs#/
+## Build and Run
 
-3. **Environment variables:**
-   - Backend: Copy `.env.example` to `.env` and fill in your secrets (API keys, DB, etc).
-   - Frontend: Ensure `.env` exists with `VITE_API_BASE_URL` set (see frontend/.env.example).
+```bash
+docker compose up --build
+```
 
-4. **Stopping containers:**
-   ```sh
-   docker compose down
-   ```
+This starts:
+- Frontend container
+- Backend container
+- Database services (if configured)
 
-**Note:**
-- Make sure Docker is installed and running on your system.
-- The backend will use SQLite by default unless you configure PostgreSQL in your `.env` file.
-- For production, review and secure all environment variables and secrets.
+---
 
-## Contributing
+## Access the Application
 
-Contributions are welcome! Please see the `docs/` folder and open issues or pull requests as needed.
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:8000 |
+| Swagger Docs | http://127.0.0.1:8000/docs |
+
+---
+
+## Environment Variables
+
+### Backend
+
+Copy:
+```bash
+.env.example
+```
+
+to:
+```bash
+.env
+```
+
+Then configure:
+- OpenAI API keys
+- Database credentials
+- JWT secrets
+
+---
+
+### Frontend
+
+Ensure:
+```bash
+VITE_API_BASE_URL
+```
+
+is properly configured inside:
+```bash
+frontend/.env
+```
+
+---
+
+## Stop Containers
+
+```bash
+docker compose down
+```
+
+---
+
+# Security Considerations
+
+This project follows secure programming principles including:
+- Input validation
+- Secure authentication
+- Secure file handling
+- Principle of least privilege
+- Static security analysis
+- Dependency isolation with Docker
+- API protection
+- Error handling and logging
+
+---
+
+# Future Improvements
+
+Potential future enhancements include:
+- Multi-language vulnerability support
+- Real-time collaborative scanning
+- Advanced AI remediation suggestions
+- Cloud-native deployment
+- Kubernetes integration
+- CI/CD security gates
+- Fine-tuned security LLMs
+- User dashboards and analytics
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+Please:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+For major changes, please open an issue first to discuss the proposed improvements.
+
+---
+
+# License
+
+This project is intended for educational and research purposes.
+
+---
