@@ -8,7 +8,7 @@ Secure AI Programming Assistant is a full-stack web application designed to help
 
 ## System Diagram
 
-![System Diagram](assets/simplearchitecturediagram.png)
+![System Diagram](frontend/src/assets/simplearchitecturediagram.png)
 
 ## Purpose & Background
 
